@@ -9,7 +9,7 @@
 * pod方法导入完成后会同时引入Masonry、lottie-ios、YLGIFImage等依赖的第三方库，请注意避免冲突。
 
 
-2、在需要的地方引入UIView+empty.h文件
+2、在需要的地方引入UIView+emptyView.h文件
 
 3、调用方法
 ```
