@@ -12,6 +12,12 @@
 #import <YLGIFImage/YLImageView.h>
 #import <YLGIFImage/YLGIFImage.h>
 
+/** 相对375屏幕尺寸宽度 */
+#define SET_WIDTH(WIDTH) WIDTH /375.0 * [[UIScreen mainScreen] bounds].size.width
+
+/** 设置十六进制颜色 */
+#define HEXCOLOR(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
 @interface DCEmptyView()
 @property (nonatomic, strong) LOTAnimationView *lottieView;
 @property (nonatomic, strong) YLImageView *gifView;

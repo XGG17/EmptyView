@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "EmptyView"
-  s.version      = "0.0.1"
+  s.version      = "1.0.1"
   s.summary      = "空白页封装"
   s.description  = <<-DESC
 空白页封装描述
