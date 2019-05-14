@@ -27,7 +27,7 @@
 }
 
 
-#pragma make - 空白页类型
+#pragma make - 空状态页类型
 /**
  * 系统加载指示器
  */
@@ -79,8 +79,8 @@
 }
 
 
-#pragma make - 清除空白页内容
-/** 清除空白页内容 */
+#pragma make - 清除空状态页内容
+/** 清除空状态页内容 */
 - (void)clearEmptyView
 {
     self.emptyView.emptyType = DCEmptyTypeDefault;
@@ -88,8 +88,8 @@
 }
 
 
-#pragma make - 设置空白页属性
-/** 设置空白页属性 */
+#pragma make - 设置空状态页属性
+/** 设置空状态页属性 */
 - (void)showEmptyType:(DCEmptyType)emptyType property:(EmptyProperty *)p
 {
     if (self.emptyView) {
