@@ -1,5 +1,5 @@
 
-# EmptyView（简单的加载页面及空状态页面）
+# EmptyView（简单的loading页面及空状态页面）
 
 一句代码支持Loading动画、空状态动画、空状态静态图片显示, EmptyView依赖于第三方库：[Masonry](https://github.com/SnapKit/Masonry)、[lottie-ios](https://github.com/airbnb/lottie-ios/tree/lottie/objectiveC)、[YLGIFImage](https://github.com/liyong03/YLGIFImage).
 
@@ -52,5 +52,15 @@
 view.emptyViewClick = ^{
     // do something ...
 };
+```
+
+5、EmptyProperty类属性释义
+```
+ imageFile    : 需要显示的资源文件（图片、lottie、gif等文件名，默认不显示)；
+ showText     : 描述文字，传@""或nil不显示(默认不显示)；
+ btnText      : 按钮文字，传@""或nil不显示(默认不显示)；
+ btnImageFile : 按钮图片，传@""或nil不显示(默认不显示)；
+ topMargin    : 距离顶部的距离（>0有效），默认居中；
+ imageWidth   : 设置图片宽度，默认自适应宽度；
 ```
 
