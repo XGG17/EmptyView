@@ -1,0 +1,35 @@
+{
+  "name": "EmptyView",
+  "version": "1.0.1",
+  "summary": "空白页封装",
+  "description": "空白页封装描述\n* Markdown 格式",
+  "homepage": "https://github.com/XGG17/EmptyView",
+  "license": "MIT",
+  "authors": {
+    "xgg": "2559818083@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/XGG17/EmptyView.git"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "DCEmptyView/*.{h,m}",
+  "frameworks": [
+    "UIKit",
+    "QuartzCore",
+    "Foundation"
+  ],
+  "requires_arc": true,
+  "dependencies": {
+    "Masonry": [
+
+    ],
+    "YLGIFImage": [
+
+    ],
+    "lottie-ios": [
+
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+PODS:
+  - EmptyView (1.0.1):
+    - lottie-ios
+    - Masonry
+    - YLGIFImage
+  - lottie-ios (2.5.0)
+  - Masonry (1.1.0)
+  - YLGIFImage (0.11)
+
+DEPENDENCIES:
+  - EmptyView (from `https://github.com/XGG17/EmptyView.git`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - lottie-ios
+    - Masonry
+    - YLGIFImage
+
+EXTERNAL SOURCES:
+  EmptyView:
+    :git: https://github.com/XGG17/EmptyView.git
+
+CHECKOUT OPTIONS:
+  EmptyView:
+    :commit: 0c3f394a10f56a291a9e5b89e41554e64eeb4066
+    :git: https://github.com/XGG17/EmptyView.git
+
+SPEC CHECKSUMS:
+  EmptyView: 2f5028219c61c1b5ee91782be01cdd8f7e024efd
+  lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  YLGIFImage: c0ae132fe80e5282b2762a97d14e23ba71a748ae
+
+PODFILE CHECKSUM: e91588d2f5350567c34932934daf99a0fc2bbe94
+
+COCOAPODS: 1.5.3
