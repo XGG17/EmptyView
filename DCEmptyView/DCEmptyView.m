@@ -7,10 +7,6 @@
 //
 
 #import "DCEmptyView.h"
-#import <Masonry/Masonry.h>
-#import <Lottie/Lottie.h>
-#import <YLGIFImage/YLImageView.h>
-#import <YLGIFImage/YLGIFImage.h>
 
 /** 相对375屏幕尺寸宽度 */
 #define SET_WIDTH(WIDTH) WIDTH /375.0 * [[UIScreen mainScreen] bounds].size.width
@@ -43,9 +39,9 @@
 }
 
 
-#pragma mark -  ====== Setter方法 设置空白页属性 =====
+#pragma mark -  ====== Setter方法 设置空状态属性 =====
 
-// 设置空白页状态
+// 设置状态
 - (void)setEmptyType:(DCEmptyType)emptyType
 {
     _emptyType = emptyType;
@@ -66,12 +62,13 @@
     if (_emptyType == DCEmptyTypeGifAnimation) {
         [self _initGifAnimation];
     }
-    // 静态空白页图片
+    // 静态空状态页图片
     if (_emptyType == DCEmptyTypeNormalEmptyView) {
         [self _initNormalEmptyView];
     }
 }
 
+// 设置EmptyProperty属性
 - (void)setP:(EmptyProperty *)p
 {
     _p = p;
@@ -79,7 +76,26 @@
     [self setImageFile];
     [self setShowText];
     [self setBtnProperty];
+    [self setTopMargin];
     [self setImageWidth];
+}
+
+// 设置距离顶部高度（>0有效）
+- (void)setTopMargin
+{
+    if (_p.topMargin > 0) {
+        __weak typeof(self) weakSelf = self;
+        [self mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(@(CGRectGetWidth(self.superview.bounds) - 24));
+            make.centerX.mas_equalTo(self.superview);
+            make.top.mas_equalTo(weakSelf.p.topMargin);
+        }];
+    } else {
+        [self mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(self.superview);
+            make.width.mas_equalTo(@(CGRectGetWidth(self.superview.bounds) - 24));
+        }];
+    }
 }
 
 // 设置内容动画\图片宽（按尺寸自适应高度）
@@ -99,7 +115,6 @@
     if (_gifView) {
         animationView = _gifView;
     }
-    
     if (_p.imageWidth > 0) {
         [animationView layoutIfNeeded];
         _imageHeight = animationView.frame.size.height * _p.imageWidth / animationView.frame.size.width;
@@ -107,6 +122,7 @@
         [self setAnimationSize:animationView];        
     }
 }
+
 // 设置动画视图大小
 - (void)setAnimationSize:(UIView *)animationView
 {
@@ -119,7 +135,6 @@
         make.height.equalTo(@(weakSelf.imageHeight));
     }];
 }
-
 
 // 设置资源文件
 - (void)setImageFile
@@ -186,6 +201,45 @@
                 make.bottom.mas_equalTo(self->_clickButton.mas_top).mas_equalTo(0);
             }];
         }
+    }
+}
+
+
+#pragma mark - ======= 事件响应、监听 ========
+
+// 关闭加载动画\图片
+- (void)closeEmptyContentView
+{
+    // 移除、关闭所有动画视图
+    if (_defaultIndicator.isAnimating) {
+        [_defaultIndicator stopAnimating];
+    }
+    if (_lottieView.isAnimationPlaying) {
+        [_lottieView stop];
+    }
+    if (_gifView.animating) {
+        [_gifView stopAnimating];
+    }
+    while (self.subviews.lastObject != nil) {
+        [self.subviews.lastObject removeFromSuperview];
+    }
+    
+    // 回收指针
+    _defaultIndicator = nil;
+    _defaultImageView = nil;
+    _gifView = nil;
+    _tipsLab = nil;
+    _clickButton = nil;
+    _lottieView = nil;
+    
+    [self removeFromSuperview];
+}
+
+// view点击回调
+- (void)clickEmptyViewAction
+{
+    if (_emptyViewClickAction) {
+        _emptyViewClickAction();
     }
 }
 
@@ -301,46 +355,6 @@
 }
 
 
-#pragma mark - ======= 关闭加载动画\图片 ========
-
-- (void)closeEmptyContentView
-{
-    // 移除、关闭所有动画视图
-    if (_defaultIndicator.isAnimating) {
-        [_defaultIndicator stopAnimating];
-    }
-    if (_lottieView.isAnimationPlaying) {
-        [_lottieView stop];
-    }
-    if (_gifView.animating) {
-        [_gifView stopAnimating];
-    }
-    while (self.subviews.lastObject != nil) {
-        [self.subviews.lastObject removeFromSuperview];
-    }
-    
-    // 回收指针
-    _defaultIndicator = nil;
-    _defaultImageView = nil;
-    _gifView = nil;
-    _tipsLab = nil;
-    _clickButton = nil;
-    _lottieView = nil;
-    
-    self.hidden = YES;
-}
-
-
-#pragma mark - ======= 点击事件 =======
-// view点击回调
-- (void)clickEmptyViewAction
-{
-    if (_emptyViewClickAction) {
-        _emptyViewClickAction();
-    }
-}
-
-
 #pragma mark -  ====== Getter方法懒加载属性 =====
 // 默认加载指示器
 - (UIActivityIndicatorView *)defaultIndicator
@@ -418,7 +432,7 @@
 @end
 
 
-
+#pragma mark - ======== EmptyProperty 类 =========
 @implementation EmptyProperty
 
 @end

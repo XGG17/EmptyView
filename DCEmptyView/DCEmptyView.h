@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Masonry/Masonry.h>
+#import <Lottie/Lottie.h>
+#import <YLGIFImage/YLImageView.h>
+#import <YLGIFImage/YLGIFImage.h>
+
 
 /** 空状态枚举 */
 typedef NS_ENUM(NSInteger , DCEmptyType){
@@ -22,12 +27,12 @@ typedef NS_ENUM(NSInteger , DCEmptyType){
 @interface DCEmptyView : UIView
 
 /**
- * 空白页枚举类型
+ * 枚举类型
  */
 @property (nonatomic, assign) DCEmptyType emptyType;
 
 /**
- * 设置空白页属性
+ * 设置空状态属性
  */
 @property (nonatomic, strong) EmptyProperty *p;
 
@@ -38,18 +43,18 @@ typedef NS_ENUM(NSInteger , DCEmptyType){
 @end
 
 
-
+#pragma mark - ======== EmptyProperty 类 =========
 
 @interface EmptyProperty : NSObject
 /**
- * EmptyProperty 设置空白页属性
+ * EmptyProperty 设置空状态属性
  *
- * imageFile    : 需要显示的资源文件（图片、lottie、gif等文件名）;
- * text         : 提示的文字, 默认显示“  加载中... ”, 传@""或nil不显示;
- * btnText      : 按钮的文字， @""或nil不显示, (默认不显示);
- * btnImageFile : 按钮图片，可以与btnText并存，@""或nil不显示, (默认不显示);
- * topMargin    : 距离顶部的距离，默认居中* mageWidth: 设置图片宽度，默认自适应宽度;
- * imageWidth   : 设置图片宽度，默认自适应宽度;
+ * imageFile    : 需要显示的资源文件（图片、lottie、gif等文件名，默认不显示)；
+ * showText     : 描述文字，传@""或nil不显示(默认不显示)；
+ * btnText      : 按钮文字，传@""或nil不显示(默认不显示)；
+ * btnImageFile : 按钮图片，传@""或nil不显示(默认不显示)；
+ * topMargin    : 距离顶部的距离（>0有效），默认居中；
+ * imageWidth   : 设置图片宽度，默认自适应宽度；
  */
 @property (nonatomic,copy) NSString *imageFile;
 @property (nonatomic,copy) NSString *showText;

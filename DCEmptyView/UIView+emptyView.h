@@ -12,12 +12,12 @@
 @interface UIView (emptyView)
 
 /**
- * 空白页对象
+ * 空状态页对象
  */
 @property (nonatomic, strong) DCEmptyView *emptyView;
 
 /**
- * 空白页点击回调
+ * 空状态页点击回调
  */
 @property (nonatomic, copy) void (^ emptyViewClick)(void);
 
@@ -42,7 +42,7 @@
 - (void)showEmptyImageView:(void (NS_NOESCAPE ^)(EmptyProperty *p))block;
 
 /**
- * 清除空白页内容
+ * 清除空状态页内容
  */
 - (void)clearEmptyView;
 

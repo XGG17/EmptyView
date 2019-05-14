@@ -8,7 +8,6 @@
 
 #import "UIView+emptyView.h"
 #import <objc/runtime.h>
-#import <Masonry/Masonry.h>
 
 @implementation UIView (emptyView)
 
@@ -85,43 +84,31 @@
 - (void)clearEmptyView
 {
     self.emptyView.emptyType = DCEmptyTypeDefault;
-    [self.emptyView removeFromSuperview];
     self.emptyView = nil;
 }
-
 
 
 #pragma make - 设置空白页属性
 /** 设置空白页属性 */
 - (void)showEmptyType:(DCEmptyType)emptyType property:(EmptyProperty *)p
 {
-    [self clearEmptyView];
+    if (self.emptyView) {
+        [self clearEmptyView];
+    }
     
+    // 设置属性（为避免Masonry设置出现闪退,必须先addSubView然后再设置属性）
     self.emptyView = [DCEmptyView new];
+    [self addSubview:self.emptyView];
     
+    self.emptyView.emptyType = emptyType;
+    self.emptyView.p = p;
+    
+    // 点击回调监听
     __weak typeof(self) weakSelf = self;
     self.emptyView.emptyViewClickAction = ^{
         if (weakSelf.emptyViewClick) {
             weakSelf.emptyViewClick();
         }
     };
-    
-    [self addSubview:self.emptyView];
-    
-    if (p.topMargin > 0) {
-        [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(@(CGRectGetWidth(self.emptyView.superview.bounds) - 24));
-            make.centerX.mas_equalTo(self.emptyView.superview);
-            make.top.mas_equalTo(p.topMargin);
-        }];
-    } else {
-        [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.mas_equalTo(self.emptyView.superview);
-            make.width.mas_equalTo(@(CGRectGetWidth(self.emptyView.superview.bounds) - 24));
-        }];
-    }
-    self.emptyView.emptyType = emptyType;
-    self.emptyView.p = p;
 }
 @end
-
