@@ -46,15 +46,14 @@
 /** 清除空状态页 */
 [view clearEmptyView];
 ```
-
-4、点击事件回调
 ```
+/** 空状态页面点击事件回调 */
 view.emptyViewClick = ^{
     // do something ...
 };
 ```
 
-5、EmptyProperty类属性释义
+4、EmptyProperty类属性释义
 ```
  imageFile    : 需要显示的资源文件（图片、lottie、gif等文件名，默认不显示)；
  showText     : 描述文字，传@""或nil不显示(默认不显示)；
