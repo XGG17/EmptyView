@@ -1,7 +1,7 @@
 
 # EmptyView（简单的加载页面及空状态页面）
 
-一句代码支持Loading动画、空状态动画、空状态静态图片显示, EmptyView依赖于第三方库：[Masonry](https://www.baidu.com)、lottie-ios、YLGIFImage.
+一句代码支持Loading动画、空状态动画、空状态静态图片显示, EmptyView依赖于第三方库：[Masonry](https://github.com/SnapKit/Masonry)、[lottie-ios](https://github.com/airbnb/lottie-ios/tree/lottie/objectiveC)、[YLGIFImage](https://github.com/liyong03/YLGIFImage).
 
 # 使用方法
 1、pod方法导入：pod 'EmptyView', :git => 'https://github.com/XGG17/EmptyView.git'
